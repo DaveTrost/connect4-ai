@@ -13,13 +13,13 @@ function solve(plays) {
     console.log(board.ascii());
     
     if(board.gameOver) {
-      console.log('Game Over. Plays =', validPlays);
+      console.log('Game Over. Plays =', validPlays, '\n\n\n');
       return false;
     }  
 
     for(let c = 0; c < width; c++) {
       if(board.isWinningMove(c)) {
-        console.log('game can end with play at', c + 1);
+        console.log('player', board.getActivePlayer(), '- game can end with play at', c + 1);
       }
     }
     return true;
@@ -27,4 +27,7 @@ function solve(plays) {
 
 }
 
-solve('3456356767676767');
+// solve('3456356767676767');
+// solve('223344556677');
+// solve('223344417374');
+solve('4441213735555');
