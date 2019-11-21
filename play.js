@@ -1,26 +1,26 @@
-const { Board } = require('./lib/Board/Board');
+const Connect4 = require('./index');
 const width = 7;
 const height = 6;
 
 function solve(plays) {
-  const board = new Board(width, height);
+  const game = new Connect4(width, height);
 
   plays.split('').forEach(play => {
-    board.play(play);
+    game.play(play);
 
-    if(!board.gameOver) {
+    if(!game.gameOver) {
       for(let c = 0; c < width; c++) {
-        if(board.isWinningMove(c)) {
-          console.log(board.ascii());
-          console.log('player', board.getActivePlayer(), '- game can end with play at', c);
+        if(game.isWinningMove(c)) {
+          console.log(game.ascii());
+          console.log('player', game.getActivePlayer(), '- game can end with play at', c);
         }
       }
     }
   });
 
-  console.log(board.ascii());
-  console.log('Game Over?', board.gameOver);
-  console.log('Winner:', board.winner);
+  console.log(game.ascii());
+  console.log('Game Over?', game.gameOver);
+  console.log('Winner:', game.winner);
   console.log('\n\n\n');
 
 }
