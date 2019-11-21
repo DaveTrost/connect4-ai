@@ -4,30 +4,28 @@ const height = 6;
 
 function solve(plays) {
   const board = new Board(width, height);
-  let validPlays = '';
 
-  plays.split('').every(play => {
-    const col = play - 1;
-    board.play(col);
-    validPlays += `${play}`;
-    console.log(board.ascii());
-    
-    if(board.gameOver) {
-      console.log('Game Over. Plays =', validPlays, '\n\n\n');
-      return false;
-    }  
+  plays.split('').forEach(play => {
+    board.play(play);
 
-    for(let c = 0; c < width; c++) {
-      if(board.isWinningMove(c)) {
-        console.log('player', board.getActivePlayer(), '- game can end with play at', c + 1);
+    if(!board.gameOver) {
+      for(let c = 0; c < width; c++) {
+        if(board.isWinningMove(c)) {
+          console.log(board.ascii());
+          console.log('player', board.getActivePlayer(), '- game can end with play at', c);
+        }
       }
     }
-    return true;
   });
+
+  console.log(board.ascii());
+  console.log('Game Over?', board.gameOver);
+  console.log('Winner:', board.winner);
+  console.log('\n\n\n');
 
 }
 
-// solve('3456356767676767');
-// solve('223344556677');
-// solve('223344417374');
-solve('4441213735555');
+solve('2345245656565656');
+solve('112233445566');
+solve('112233306263');
+solve('3330102624444');
