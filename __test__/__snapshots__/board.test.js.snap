@@ -1,6 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Board Class can predict a winning moves in both diagonal directions 1`] = `
+exports[`Board Class can predict a winning move in a vertical direction 1`] = `
+"
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  - 
+ -  1  2  -  -  -  - 
+ -  1  2  -  -  -  - 
+ -  1  2  -  -  -  - 
+---------------------
+[0][1][2][3][4][5][6]"
+`;
+
+exports[`Board Class can predict winning moves for corner cases 1`] = `
+"
+ -  -  -  2  2  -  - 
+ -  -  2  1  2  -  - 
+ -  -  2  2  1  -  - 
+ -  -  1  2  1  -  - 
+ -  2  1  1  1  2  1 
+ 2  2  1  1  2  1  1 
+---------------------
+[0][1][2][3][4][5][6]"
+`;
+
+exports[`Board Class can predict winning moves in a horizontal direction 1`] = `
+"
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  2 
+ -  -  -  -  -  -  2 
+ -  1  1  1  -  -  2 
+---------------------
+[0][1][2][3][4][5][6]"
+`;
+
+exports[`Board Class can predict winning moves in a horizontal direction 2`] = `
+"
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  - 
+ -  -  -  -  -  -  2 
+ -  -  -  -  -  -  2 
+ -  1  1  -  1  -  2 
+---------------------
+[0][1][2][3][4][5][6]"
+`;
+
+exports[`Board Class can predict winning moves in both diagonal directions 1`] = `
 "
  -  -  -  -  -  -  - 
  -  -  -  -  -  -  - 
@@ -12,7 +60,7 @@ exports[`Board Class can predict a winning moves in both diagonal directions 1`]
 [0][1][2][3][4][5][6]"
 `;
 
-exports[`Board Class can predict a winning moves in both diagonal directions 2`] = `
+exports[`Board Class can predict winning moves in both diagonal directions 2`] = `
 "
  -  -  -  -  -  -  - 
  -  -  -  -  -  -  - 
@@ -20,6 +68,30 @@ exports[`Board Class can predict a winning moves in both diagonal directions 2`]
  -  -  1  1  2  -  - 
  -  1  2  2  1  2  2 
  1  2  2  1  1  1  2 
+---------------------
+[0][1][2][3][4][5][6]"
+`;
+
+exports[`Board Class can predict winning moves in both diagonal directions 3`] = `
+"
+ -  -  -  -  -  -  - 
+ -  -  -  2  -  1  - 
+ -  -  -  1  -  2  - 
+ -  2  -  2  -  2  - 
+ 1  1  1  2  2  1  - 
+ 1  1  2  2  1  2  1 
+---------------------
+[0][1][2][3][4][5][6]"
+`;
+
+exports[`Board Class can predict winning moves in both diagonal directions 4`] = `
+"
+ -  -  -  -  -  -  - 
+ -  -  -  2  -  1  - 
+ -  -  -  1  -  2  - 
+ -  2  -  2  -  2  - 
+ 1  1  1  2  2  1  1 
+ 1  1  2  2  1  2  1 
 ---------------------
 [0][1][2][3][4][5][6]"
 `;
