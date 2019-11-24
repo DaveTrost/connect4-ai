@@ -10,7 +10,7 @@ describe('Board Class', () => {
     expect(board.ascii()).toMatchSnapshot();
     expect(board.getActivePlayer()).toBe(1);
     expect(board.getMoves()).toBe(0);
-    expect(board.gameOver).toBeFalsy;
+    expect(board.gameOver).toBeFalsy();
     expect(board.winner).toBeNull;
     
     board.play(1); board.play(2);
@@ -21,7 +21,7 @@ describe('Board Class', () => {
     expect(board.ascii()).toMatchSnapshot();
     expect(board.getActivePlayer()).toBe(2);
     expect(board.getMoves()).toBe(7);
-    expect(board.gameOver).toBeTruthy;
+    expect(board.gameOver).toBeTruthy();
     expect(board.winner).toBe(1);
   });
 
@@ -31,19 +31,29 @@ describe('Board Class', () => {
     board.play(1); board.play(2);
     board.play(1); board.play(2);
     
-    expect(board.isWinningMove(1)).toBeTruthy;
+    expect(board.ascii()).toMatchSnapshot();
+    expect(board.isWinningMove(1)).toBeTruthy();
   });
 
-  it('can predict a winning move in a horizontal direction', () => {
+  it('can predict winning moves in a horizontal direction', () => {
     const board = new Board(width, height);
     board.play(1); board.play(6);
     board.play(2); board.play(6);
     board.play(3); board.play(6);
     
-    expect(board.isWinningMove(4)).toBeTruthy;
+    expect(board.ascii()).toMatchSnapshot();
+    expect(board.isWinningMove(4)).toBeTruthy();
+
+    const board2 = new Board(width, height);
+    board2.play(1); board2.play(6);
+    board2.play(2); board2.play(6);
+    board2.play(4); board2.play(6);
+    
+    expect(board2.ascii()).toMatchSnapshot();
+    expect(board2.isWinningMove(3)).toBeTruthy();
   });
 
-  it('can predict a winning moves in both diagonal directions', () => {
+  it('can predict winning moves in both diagonal directions', () => {
     const board = new Board(width, height);
     board.play(0); board.play(6);
     board.play(5); board.play(1);
@@ -55,11 +65,40 @@ describe('Board Class', () => {
 
     board.play(3);
     expect(board.ascii()).toMatchSnapshot();
-    expect(board.isWinningMove(3)).toBeTruthy;
+    expect(board.isWinningMove(3)).toBeTruthy();
     
     board.play(6);
     expect(board.ascii()).toMatchSnapshot();
-    expect(board.isWinningMove(3)).toBeTruthy;
+    expect(board.isWinningMove(3)).toBeTruthy();
+
+    const board2 = new Board(width, height);
+    board2.play(0); board2.play(2);
+    board2.play(1); board2.play(3);
+    board2.play(1); board2.play(3);
+    board2.play(4); board2.play(4);
+    board2.play(2); board2.play(3);
+    board2.play(3); board2.play(5);
+    board2.play(5); board2.play(5);
+    board2.play(6); board2.play(5);
+    board2.play(5); board2.play(1);
+    board2.play(0); board2.play(3);
+
+    expect(board2.ascii()).toMatchSnapshot();
+    expect(board2.isWinningMove(2)).toBeTruthy();
+    expect(board2.isWinningMove(4)).toBeTruthy();
+    
+    board2.play(6);
+    expect(board2.ascii()).toMatchSnapshot();
+    expect(board2.isWinningMove(4)).toBeTruthy();
+  });
+
+  it('can predict winning moves for corner cases', () => {
+    const board = new Board(width, height);
+    const plays = '312033242241434434636255'.split('');
+    plays.forEach(play => board.play(play));
+
+    expect(board.ascii()).toMatchSnapshot();
+    expect(board.isWinningMove(5)).toBeTruthy();    
   });
 
   it('can make plays with 1-based indices', () => {
@@ -67,7 +106,7 @@ describe('Board Class', () => {
     board.play1BasedColumn(1); board.play1BasedColumn(2);    
     expect(board.getActivePlayer()).toBe(1);
     expect(board.getMoves()).toBe(2);
-    expect(board.gameOver).toBeFalsy;
+    expect(board.gameOver).toBeFalsy();
   });
 
   it('can work with boards of different sizes', () => {
@@ -82,8 +121,8 @@ describe('Board Class', () => {
     const size = 3;
     const board = new Board(size, size);
 
-    expect(board.canPlay(-1)).toBeFalsy;
-    expect(board.canPlay(3)).toBeFalsy;
+    expect(board.canPlay(-1)).toBeFalsy();
+    expect(board.canPlay(3)).toBeFalsy();
     expect(() => board.play(-1)).toThrow();
     expect(() => board.play(3)).toThrow();
     expect(board.getMoves()).toBe(0);
@@ -98,7 +137,7 @@ describe('Board Class', () => {
     board.play(1); board.play(1);
     board.play(2); board.play(2);
     board.play(3); 
-    expect(board.gameOver).toBeTruthy;
+    expect(board.gameOver).toBeTruthy();
 
     expect(board.getMoves()).toBe(7);
     for(let i = 0; i < 10; i++) board.play(3);
@@ -111,7 +150,7 @@ describe('Board Class', () => {
     const board = new Board(width, height);
 
     board.play(0); board.play(1);
-    expect(board.gameOver).toBeTruthy;
+    expect(board.gameOver).toBeTruthy();
 
     expect(board.getMoves()).toBe(2);
     for(let i = 0; i < 10; i++) board.play(0);
