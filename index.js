@@ -1,5 +1,1 @@
-const hello = (name = 'World') => {
-  return `Hello ${name}`;
-};
-
-module.exports = { hello };
+module.exports = require('./lib/Board/Board').Board;
