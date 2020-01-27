@@ -1,8 +1,11 @@
 {
   "name": "connect4-ai",
-  "version": "0.0.1",
-  "description": "Artificial Intelligence engine that generates possible moves and win/loss weights from a given game state of Connect4 (aka: four-in-a-row)",
+  "version": "0.0.3",
+  "description": "** IN_DEVELOPMENT ** Artificial Intelligence engine that generates possible moves and win/loss weights from a given game state of Connect4 (aka: four-in-a-row)",
   "main": "index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
@@ -27,5 +30,6 @@
     "eslint": "^6.6.0",
     "jest": "^24.9.0",
     "nodemon": "^2.0.0"
-  }
+  },
+  "dependencies": {}
 }
