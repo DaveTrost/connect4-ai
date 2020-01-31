@@ -1,11 +1,11 @@
 const { Board } = require('../lib/Board/Board');
-const { playAI } = require('../lib/solvers/negamax');
+const { aiPlays } = require('../lib/solvers/negamax');
 
 describe('Negamax Solver', () => {
   const width = 7;
   const height = 6;
 
-  it('properly weights a winning move in a vertical direction', () => {
+  it('properly evaluates an immediate winning move in column 1', () => {
     const board = new Board(width, height);
     board.play(1);
     board.play(2);
@@ -14,20 +14,20 @@ describe('Negamax Solver', () => {
     board.play(1);
     board.play(6);
 
-    expect(playAI(board)).toMatchInlineSnapshot(`
+    expect(aiPlays(board)).toMatchInlineSnapshot(`
       Array [
-        -42,
-        17.5,
-        -42,
-        -42,
-        -42,
-        -42,
-        -42,
+        33,
+        35,
+        31,
+        33,
+        31,
+        33,
+        33,
       ]
     `);
   });
 
-  it('properly weights a winning move in a vertical direction w.r.t. a block in a vertical direction', () => {
+  it('properly evaluates a winning move in column 1 and a block of the opponents win in column 2', () => {
     const board = new Board(width, height);
     board.play(1);
     board.play(2);
@@ -36,35 +36,51 @@ describe('Negamax Solver', () => {
     board.play(1);
     board.play(2);
 
-    expect(playAI(board)).toMatchInlineSnapshot(`
+    expect(aiPlays(board)).toMatchInlineSnapshot(`
       Array [
-        -18,
-        17.5,
-        -42,
-        -18,
-        -18,
-        -18,
-        -18,
+        -34,
+        35,
+        33,
+        -34,
+        -34,
+        -34,
+        -34,
       ]
     `);
   });
 
-  it('finds a winning move 2 plays into the future (in a horizontal direction)', () => {
+  it('finds moves at columns 1 and 4 that each result in a win, 3 plays into the future', () => {
     const board = new Board(width, height);
     board.play(2);
     board.play(2);
     board.play(3);
     board.play(3);
 
-    expect(playAI(board)).toMatchInlineSnapshot(`
+    expect(aiPlays(board)).toMatchInlineSnapshot(`
       Array [
-        -42,
-        18.5,
-        -42,
-        -42,
-        18.5,
-        -42,
-        -42,
+        33,
+        35,
+        33,
+        33,
+        35,
+        33,
+        33,
+      ]
+    `);
+  });
+
+  it('ranks all columns equally when the board is empty', () => {
+    const board = new Board(width, height);
+
+    expect(aiPlays(board)).toMatchInlineSnapshot(`
+      Array [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
       ]
     `);
   });

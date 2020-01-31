@@ -1,7 +1,7 @@
 const Connect4 = require('./index');
 const width = 7;
 const height = 6;
-const { playAI } = require('./lib/solvers/negamax');
+const { aiPlays } = require('./lib/solvers/negamax');
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -26,7 +26,7 @@ rl.on('line', (line) => {
     game = showBoardUpdate(game);
     
     if(HUMAN_V_COMPUTER && !game.gameOver) {
-      const play = playAI(game);
+      const play = aiPlays(game);  // needs to be re-worked
       game.play(play);
       console.log('Computer played column:', play);
       game = showBoardUpdate(game);
