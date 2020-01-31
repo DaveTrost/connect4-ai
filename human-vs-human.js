@@ -27,7 +27,7 @@ function handlePlay(column) {
 }
 
 function displayBoard(board) {
-  console.log(`Column ${game.plays[]} was played ${board}`);
+  console.log(`Column ${game.plays[game.plays.length - 1]} was played ${board}`);
 }
 function updateStatus(status) {
   console.log('\n', status, '\n');
