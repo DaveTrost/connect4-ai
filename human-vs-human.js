@@ -22,14 +22,13 @@ function handlePlay(column) {
   if(!game.canPlay(column)) return;
     
   game.play(column);
-  updateBoard(column);
+  displayBoard(game.ascii());
   updateStatus(game.gameStatus());
 }
 
+function displayBoard(board) {
+  console.log(`Column ${game.plays[]} was played ${board}`);
+}
 function updateStatus(status) {
   console.log('\n', status, '\n');
-}
-
-function updateBoard(column) {
-  console.log(`Column ${column} was played: ${game.ascii()}`);
 }

@@ -2,9 +2,7 @@
 
 ***IN DEVELOPMENT***
 
-An NPM package providing game-state management and AI (computer) moves for the game Connect-4 (aka: four-in-a-row). 
-From a given game state, the tool will provide a list of possible moves and the win/loss weights for each move.
-The package can aso provide game state management for games with 2 humans, reporting the game over and win/draw status.
+An NPM package providing game-state management for the game Connect-4 (aka: four-in-a-row). Two modes are supported: human vs. computer (v0.0.4 and later) & human vs. human (in development)
 
 ## Sample Code
 
@@ -15,7 +13,7 @@ const width = 7;
 const height = 6;
 
 const game = new Connect4(width, height);
-const moves = [3, 2,  4, 4,  3, 3,  2, 5,  1, 1,  1, 4,  1, 2,  2, 3,  3, 6,  5, 5];  // and so on ...
+const moves = [3, 2,  4, 4,  3, 3,  2, 5,  1, 1];  // and so on ...
 moves.forEach(humanPlay => handlePlay(humanPlay));
 
 function handlePlay(column) {
@@ -23,7 +21,7 @@ function handlePlay(column) {
   if(!game.canPlay(column)) return;
 
   game.play(column);
-  updateBoard(column);
+  displayBoard(game.ascii);
   updateStatus(game.gameStatus());
 }
 ```
