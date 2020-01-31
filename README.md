@@ -2,7 +2,7 @@
 
 ***IN DEVELOPMENT***
 
-An NPM package providing game-state management for the game Connect-4 (aka: four-in-a-row). Two modes are supported: human vs. computer (v0.0.4 and later) & human vs. human (in development)
+An NPM package providing game-state management for the game Connect-4 (aka: four-in-a-row). Two modes are supported: human vs. computer (v0.0.5 and later) & human vs. human (in development)
 
 ## Sample Code
 
