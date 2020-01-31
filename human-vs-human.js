@@ -3,7 +3,6 @@ const width = 7;
 const height = 6;
 
 const game = new Connect4(width, height);
-
 const moves = [
   3, 2, 
   4, 4, 
@@ -16,9 +15,7 @@ const moves = [
   3, 6,
   5, 5
 ];
-moves.forEach(humanPlay => {
-  handlePlay(humanPlay);
-});
+moves.forEach(humanPlay => handlePlay(humanPlay));
 
 function handlePlay(column) {
   if(game.gameStatus().gameOver) return;
