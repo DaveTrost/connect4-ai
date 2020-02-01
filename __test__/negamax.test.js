@@ -57,13 +57,13 @@ describe('Negamax Solver with default/faster settings', () => {
 
     expect(aiPlays(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
-        33,
+        0,
         35,
-        33,
-        33,
-        33,
-        33,
-        33,
+        0,
+        0,
+        0,
+        0,
+        0,
       ]
     `);
   });
@@ -81,7 +81,7 @@ describe('Negamax Solver with default/faster settings', () => {
       Array [
         -34,
         35,
-        33,
+        0,
         -34,
         -34,
         -34,
@@ -99,19 +99,19 @@ describe('Negamax Solver with default/faster settings', () => {
 
     expect(aiPlays(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
-        35,
+        0,
         35,
         0,
         0,
         35,
-        35,
+        0,
         0,
       ]
     `);
   });
 });
 
-describe.skip('Negamax Solver with harder/slower settings', () => {
+describe('Negamax Solver with harder/slower settings', () => {
   const width = 7;
   const height = 6;
   const slowerLookaheadDepth = 4;
@@ -127,13 +127,13 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
 
     expect(aiPlays(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
-        33,
+        0,
         35,
-        31,
-        33,
-        31,
-        33,
-        33,
+        0,
+        0,
+        0,
+        0,
+        0,
       ]
     `);
   });
@@ -151,7 +151,7 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
       Array [
         -34,
         35,
-        33,
+        0,
         -34,
         -34,
         -34,
@@ -169,13 +169,13 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
 
     expect(aiPlays(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
-        33,
+        0,
         35,
-        33,
-        33,
+        0,
+        0,
         35,
-        33,
-        33,
+        0,
+        0,
       ]
     `);
   });
