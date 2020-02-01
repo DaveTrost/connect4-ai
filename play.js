@@ -1,7 +1,7 @@
 const Connect4 = require('./index');
 const width = 7;
 const height = 6;
-const { aiPlays } = require('./lib/solvers/negamax');
+const { aiPlays } = require('./lib/negamax');
 
 const readline = require('readline');
 const rl = readline.createInterface({

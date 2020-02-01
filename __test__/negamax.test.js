@@ -1,5 +1,5 @@
-const { Board } = require('../lib/Board/Board');
-const { aiPlays } = require('../lib/solvers/negamax');
+const { Board } = require('../lib/Board');
+const { aiPlays } = require('../lib/negamax');
 
 describe('Negamax Solver corner cases', () => {
   const width = 7;
