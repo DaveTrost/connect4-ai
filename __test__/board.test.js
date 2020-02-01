@@ -50,8 +50,7 @@ describe('Board Class', () => {
     board.play(2);
     board.play(1);
     board.play(2);
-    board.play(1);
-    board.play(2);
+    board.playMoves([1, 2]);
     board.play(1);
 
     expect(board.ascii()).toMatchInlineSnapshot(`
