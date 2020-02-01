@@ -37,17 +37,7 @@ describe('Negamax Solver corner cases', () => {
     board.play(1);
     board.play(6);
 
-    expect(aiPlays(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
-      Array [
-        -26,
-        0,
-        -26,
-        27,
-        -26,
-        -26,
-        -26,
-      ]
-    `);
+    expect(aiPlays(board, fasterLookaheadDepth)[1]).toBe(null);
   });
 });
 
