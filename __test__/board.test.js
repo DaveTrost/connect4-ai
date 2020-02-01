@@ -4,6 +4,22 @@ describe('Board Class', () => {
   const width = 7;
   const height = 6;
 
+  it('uses default board size if not provided', () => {
+    const board = new Board();
+
+    expect(board.ascii()).toMatchInlineSnapshot(`
+      "
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+      ---------------------
+      [0][1][2][3][4][5][6]"
+    `);
+  });
+
   it('has basic game play functionality', () => {
     const board = new Board(width, height);
 
@@ -22,6 +38,13 @@ describe('Board Class', () => {
     expect(board.getMoves()).toBe(0);
     expect(board.gameOver).toBeFalsy();
     expect(board.winner).toBeNull;
+    expect(board.gameStatus()).toMatchInlineSnapshot(`
+      Object {
+        "currentPlayer": 1,
+        "gameOver": false,
+        "movesPlayed": 0,
+      }
+    `);
 
     board.play(1);
     board.play(2);
@@ -43,9 +66,14 @@ describe('Board Class', () => {
       [0][1][2][3][4][5][6]"
     `);
     expect(board.getActivePlayer()).toBe(2);
-    expect(board.getMoves()).toBe(7);
-    expect(board.gameOver).toBeTruthy();
-    expect(board.winner).toBe(1);
+    expect(board.gameStatus()).toMatchInlineSnapshot(`
+      Object {
+        "currentPlayer": 2,
+        "gameOver": true,
+        "movesPlayed": 7,
+        "winner": 1,
+      }
+    `);
   });
 
   it('can predict a winning move in a vertical direction', () => {
@@ -271,7 +299,14 @@ describe('Board Class', () => {
     board.play(2);
     board.play(2);
     board.play(3);
-    expect(board.gameOver).toBeTruthy();
+    expect(board.gameStatus()).toMatchInlineSnapshot(`
+      Object {
+        "currentPlayer": 2,
+        "gameOver": true,
+        "movesPlayed": 7,
+        "winner": 1,
+      }
+    `);
 
     expect(board.getMoves()).toBe(7);
     for(let i = 0; i < 10; i++) board.play(3);
@@ -285,7 +320,14 @@ describe('Board Class', () => {
 
     board.play(0);
     board.play(1);
-    expect(board.gameOver).toBeTruthy();
+    expect(board.gameStatus()).toMatchInlineSnapshot(`
+      Object {
+        "currentPlayer": 1,
+        "gameOver": true,
+        "movesPlayed": 2,
+        "winner": null,
+      }
+    `);
 
     expect(board.getMoves()).toBe(2);
     for(let i = 0; i < 10; i++) board.play(0);
