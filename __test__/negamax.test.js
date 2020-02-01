@@ -1,5 +1,5 @@
 const { Board } = require('../lib/Board');
-const { aiPlays } = require('../lib/negamax');
+const { negamaxScores } = require('../lib/negamax');
 
 describe('Negamax Solver corner cases', () => {
   const width = 7;
@@ -9,7 +9,7 @@ describe('Negamax Solver corner cases', () => {
   it('ranks all columns equally when the board is empty', () => {
     const board = new Board(width, height);
 
-    expect(aiPlays(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
+    expect(negamaxScores(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
         0,
         0,
@@ -33,7 +33,7 @@ describe('Negamax Solver corner cases', () => {
       1, 6,
     ]);
 
-    expect(aiPlays(board, fasterLookaheadDepth)[1]).toBe(null);
+    expect(negamaxScores(board, fasterLookaheadDepth)[1]).toBe(null);
   });
 });
 
@@ -50,7 +50,7 @@ describe('Negamax Solver with default/faster settings', () => {
       1, 6,
     ]);
 
-    expect(aiPlays(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
+    expect(negamaxScores(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
         0,
         35,
@@ -71,7 +71,7 @@ describe('Negamax Solver with default/faster settings', () => {
       1, 2,
     ]);
 
-    expect(aiPlays(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
+    expect(negamaxScores(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
         -34,
         35,
@@ -91,7 +91,7 @@ describe('Negamax Solver with default/faster settings', () => {
       3, 3,
     ]);
 
-    expect(aiPlays(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
+    expect(negamaxScores(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
         0,
         35,
@@ -118,7 +118,7 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
       1, 6,
     ]);
 
-    expect(aiPlays(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
+    expect(negamaxScores(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
         0,
         35,
@@ -139,7 +139,7 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
       1, 2,
     ]);
 
-    expect(aiPlays(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
+    expect(negamaxScores(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
         -34,
         35,
@@ -159,7 +159,7 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
       3, 3,
     ]);
 
-    expect(aiPlays(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
+    expect(negamaxScores(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
         0,
         35,
