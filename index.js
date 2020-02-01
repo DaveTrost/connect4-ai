@@ -1,1 +1,1 @@
-module.exports = require('./lib/Board/Board').Board;
+module.exports = require('./lib/Board').Board;

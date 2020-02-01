@@ -4,11 +4,14 @@
 
 An NPM package providing game-state management for the game Connect-4 (aka: four-in-a-row). Two modes are supported: human vs. human (v0.0.7 and later) & human vs. computer (in development)
 
-## Sample Code
+## Setup and Usage
+
+The package can be installed using `npm install connect4-ai`. The code snippets below give an idea how the package can be used.
 
 ### Human vs. Human
+
 ```
-const Connect4 = require('./index');  // require('connect4-ai')
+const Connect4 = require('connect4-ai')
 const width = 7;
 const height = 6;
 
@@ -25,3 +28,7 @@ function handlePlay(column) {
   updateStatus(game.gameStatus());
 }
 ```
+
+### Human vs. Computer
+
+coming soon ...
