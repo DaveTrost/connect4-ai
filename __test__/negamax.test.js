@@ -24,14 +24,7 @@ describe('Negamax Solver corner cases', () => {
 
   it('identifies a column that is full as being unplayable', () => {
     const board = new Board(width, height);
-    board.playMoves([
-      0, 0, 
-      1, 1, 
-      0, 1,
-      1, 0,
-      1, 0,
-      1, 6,
-    ]);
+    board.playMoves([0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 6]);
 
     expect(negamaxScores(board, fasterLookaheadDepth)[1]).toBe(null);
   });
@@ -44,11 +37,7 @@ describe('Negamax Solver with default/faster settings', () => {
 
   it('identifies an immediate winning move in column 1', () => {
     const board = new Board(width, height);
-    board.playMoves([
-      1, 2,
-      1, 4,
-      1, 6,
-    ]);
+    board.playMoves([1, 2, 1, 4, 1, 6]);
 
     expect(negamaxScores(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
@@ -65,11 +54,7 @@ describe('Negamax Solver with default/faster settings', () => {
 
   it('identifies a winning move in column 1 and a block of the opponents win in column 2', () => {
     const board = new Board(width, height);
-    board.playMoves([
-      1, 2,
-      1, 2,
-      1, 2,
-    ]);
+    board.playMoves([1, 2, 1, 2, 1, 2]);
 
     expect(negamaxScores(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
@@ -86,10 +71,7 @@ describe('Negamax Solver with default/faster settings', () => {
 
   it('identifies moves at columns 1 and 4 that each result in a win, 3 plays into the future', () => {
     const board = new Board(width, height);
-    board.playMoves([
-      2, 2,
-      3, 3,
-    ]);
+    board.playMoves([2, 2, 3, 3]);
 
     expect(negamaxScores(board, fasterLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
@@ -112,11 +94,7 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
 
   it('identifies an immediate winning move in column 1', () => {
     const board = new Board(width, height);
-    board.playMoves([
-      1, 2,
-      1, 4,
-      1, 6,
-    ]);
+    board.playMoves([1, 2, 1, 4, 1, 6]);
 
     expect(negamaxScores(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
@@ -133,11 +111,7 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
 
   it('identifies a winning move in column 1 and a block of the opponents win in column 2', () => {
     const board = new Board(width, height);
-    board.playMoves([
-      1, 2,
-      1, 2,
-      1, 2,
-    ]);
+    board.playMoves([1, 2, 1, 2, 1, 2]);
 
     expect(negamaxScores(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
@@ -154,10 +128,7 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
 
   it('finds moves at columns 1 and 4 that each result in a win, 3 plays into the future', () => {
     const board = new Board(width, height);
-    board.playMoves([
-      2, 2,
-      3, 3,
-    ]);
+    board.playMoves([2, 2, 3, 3]);
 
     expect(negamaxScores(board, slowerLookaheadDepth)).toMatchInlineSnapshot(`
       Array [
@@ -170,5 +141,12 @@ describe.skip('Negamax Solver with harder/slower settings', () => {
         0,
       ]
     `);
+  });
+
+  it('plays defensively', () => {
+    const board = new Board(width, height);
+    board.playMoves([2, 3, 1, 2, 1, 3, 0, 4, 0, 5, 5, 6, 2, 6, 1, 1]);
+
+    expect(negamaxScores(board, slowerLookaheadDepth)).toMatchInlineSnapshot();
   });
 });
