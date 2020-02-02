@@ -1,8 +1,6 @@
 # connect4-ai
 
-***IN DEVELOPMENT***
-
-An NPM package providing game-state management for the game Connect-4 (aka: four-in-a-row). Two modes are supported: human vs. human (v0.0.7 and later) & human vs. computer (in development)
+An NPM package providing game-state management for the game Connect-4 (aka: four-in-a-row). Two modes are supported: human vs. human (v0.0.7 and later) & human vs. computer (v0.1.0 and later)
 
 ## Setup and Usage
 
