@@ -11,7 +11,7 @@ The package can be installed using `npm install connect4-ai`. The code snippets 
 ### Human vs. Human
 
 ```
-const Connect4 = require('connect4-ai')
+const { Connect4 } = require('connect4-ai')
 
 const game = new Connect4();
 const moves = [3, 2,  4, 4,  3, 3,  2, 5,  1, 1];  // and so on ...
