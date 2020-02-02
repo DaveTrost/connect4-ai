@@ -1,4 +1,4 @@
-const { Connect4AI } = require('./index');  // require('connect4-ai')
+const { Connect4AI } = require('./index');  // externally: require('connect4-ai')
 
 const game = new Connect4AI();
 const movesPlayer1 = [

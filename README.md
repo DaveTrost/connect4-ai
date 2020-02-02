@@ -22,6 +22,7 @@ function handlePlay(column) {
   if(!game.canPlay(column)) return;
 
   game.play(column);
+
   displayBoard(game.ascii);
   updateStatus(game.gameStatus());
 }
@@ -29,4 +30,23 @@ function handlePlay(column) {
 
 ### Human vs. Computer
 
-coming soon ...
+```
+const { Connect4AI } = require('connect4-ai')
+
+const game = new Connect4AI();
+const movesPlayer1 = [3, 4, 3, 2, 1];  // and so on ...
+
+movesPlayer1.forEach(humanPlay => {
+  handlePlay(() => game.play(humanPlay));
+  handlePlay(() => game.playAI('hard'));   // or 'easy' or 'medium'
+});
+
+function handlePlay(playFunction) {
+  if(game.gameStatus().gameOver) return;
+    
+  playFunction();
+
+  displayBoard(game.ascii());
+  updateStatus(game.gameStatus());
+}
+```
