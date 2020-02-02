@@ -1,7 +1,7 @@
 const Connect4 = require('./index');
 const width = 7;
 const height = 6;
-const { aiPlays } = require('./lib/negamax');
+const { aiPlay } = require('./lib/aiPlay');
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -11,6 +11,7 @@ const rl = readline.createInterface({
 });
 
 const HUMAN_V_COMPUTER = true;
+const DIFFICULTY = 'easy';
 
 let game = new Connect4(width, height);
 console.log(game.ascii());
@@ -26,7 +27,7 @@ rl.on('line', (line) => {
     game = showBoardUpdate(game);
     
     if(HUMAN_V_COMPUTER && !game.gameOver) {
-      const play = aiPlays(game);  // needs to be re-worked
+      const play = aiPlay(game, DIFFICULTY);
       game.play(play);
       console.log('Computer played column:', play);
       game = showBoardUpdate(game);
@@ -54,34 +55,3 @@ function showBoardUpdate(game) {
   }
   return game;
 }
-
-
-/*
-function solve(plays) {
-  const game = new Connect4(width, height);
-
-  plays.split('').forEach(play => {
-    game.play(play);
-
-    if(!game.gameOver) {
-      for(let c = 0; c < width; c++) {
-        if(game.isWinningMove(c)) {
-          console.log(game.ascii());
-          console.log('player', game.getActivePlayer(), '- game can end with play at', c);
-        }
-      }
-    }
-  });
-
-  console.log(game.ascii());
-  console.log('Game Over?', game.gameOver);
-  console.log('Winner:', game.winner);
-  console.log('\n\n\n');
-
-}
-
-// solve('2345245656565656');
-// solve('112233445566');
-// solve('112233306263');
-// solve('3330102624444');
-*/

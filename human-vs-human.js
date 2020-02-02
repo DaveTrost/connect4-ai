@@ -1,8 +1,6 @@
-const Connect4 = require('./index');  // require('connect4-ai')
-const width = 7;
-const height = 6;
+const { Connect4 } = require('./index');  // externally: require('connect4-ai')
 
-const game = new Connect4(width, height);
+const game = new Connect4();
 const moves = [
   3, 2, 
   4, 4, 
