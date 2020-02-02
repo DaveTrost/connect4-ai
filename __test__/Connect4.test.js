@@ -1,24 +1,9 @@
 const Connect4 = require('../lib/Connect4');
+const Connect4AI = require('../lib/Connect4AI');
 
 describe('Connect4 Class', () => {
   const width = 7;
   const height = 6;
-
-  it('uses default size if not provided', () => {
-    const board = new Connect4();
-
-    expect(board.ascii()).toMatchInlineSnapshot(`
-      "
-       -  -  -  -  -  -  - 
-       -  -  -  -  -  -  - 
-       -  -  -  -  -  -  - 
-       -  -  -  -  -  -  - 
-       -  -  -  -  -  -  - 
-       -  -  -  -  -  -  - 
-      ---------------------
-      [0][1][2][3][4][5][6]"
-    `);
-  });
 
   it('has basic game play functionality', () => {
     const board = new Connect4(width, height);
@@ -331,5 +316,33 @@ describe('Connect4 Class', () => {
     expect(board.getMoveCount()).toBe(2);
     for(let i = 0; i < 10; i++) board.play(0);
     expect(board.getMoveCount()).toBe(2);
+  });
+
+  it('uses default size if not provided', () => {
+    const board = new Connect4();
+    expect(board.ascii()).toMatchInlineSnapshot(`
+      "
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+      ---------------------
+      [0][1][2][3][4][5][6]"
+    `);
+
+    const boardWithAI = new Connect4AI();
+    expect(boardWithAI.ascii()).toMatchInlineSnapshot(`
+      "
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+       -  -  -  -  -  -  - 
+      ---------------------
+      [0][1][2][3][4][5][6]"
+    `);
   });
 });
