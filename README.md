@@ -12,10 +12,8 @@ The package can be installed using `npm install connect4-ai`. The code snippets 
 
 ```
 const Connect4 = require('connect4-ai')
-const width = 7;
-const height = 6;
 
-const game = new Connect4(width, height);
+const game = new Connect4();
 const moves = [3, 2,  4, 4,  3, 3,  2, 5,  1, 1];  // and so on ...
 moves.forEach(humanPlay => handlePlay(humanPlay));
 
