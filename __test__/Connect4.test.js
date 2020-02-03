@@ -55,12 +55,30 @@ describe('Connect4 Class', () => {
         "currentPlayer": 2,
         "gameOver": true,
         "movesPlayed": 7,
+        "solution": Array [
+          Object {
+            "column": 1,
+            "spacesFromBottom": 3,
+          },
+          Object {
+            "column": 1,
+            "spacesFromBottom": 2,
+          },
+          Object {
+            "column": 1,
+            "spacesFromBottom": 1,
+          },
+          Object {
+            "column": 1,
+            "spacesFromBottom": 0,
+          },
+        ],
         "winner": 1,
       }
     `);
   });
 
-  it('can predict a winning move in a vertical direction', () => {
+  it('can predict and report a winning move in a vertical direction', () => {
     const board = new Connect4(width, height);
     board.play(1);
     board.play(2);
@@ -81,9 +99,31 @@ describe('Connect4 Class', () => {
       [0][1][2][3][4][5][6]"
     `);
     expect(board.isWinningMove(1)).toBeTruthy();
+
+    board.play(1);
+    expect(board.gameStatus().solution).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "column": 1,
+          "spacesFromBottom": 3,
+        },
+        Object {
+          "column": 1,
+          "spacesFromBottom": 2,
+        },
+        Object {
+          "column": 1,
+          "spacesFromBottom": 1,
+        },
+        Object {
+          "column": 1,
+          "spacesFromBottom": 0,
+        },
+      ]
+    `);
   });
 
-  it('can predict winning moves in a horizontal direction', () => {
+  it('can predict and report winning moves in a horizontal direction', () => {
     const board = new Connect4(width, height);
     board.play(1);
     board.play(6);
@@ -104,6 +144,28 @@ describe('Connect4 Class', () => {
       [0][1][2][3][4][5][6]"
     `);
     expect(board.isWinningMove(4)).toBeTruthy();
+
+    board.play(4);
+    expect(board.gameStatus().solution).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "column": 4,
+          "spacesFromBottom": 0,
+        },
+        Object {
+          "column": 3,
+          "spacesFromBottom": 0,
+        },
+        Object {
+          "column": 2,
+          "spacesFromBottom": 0,
+        },
+        Object {
+          "column": 1,
+          "spacesFromBottom": 0,
+        },
+      ]
+    `);
 
     const board2 = new Connect4(width, height);
     board2.play(1);
@@ -127,7 +189,7 @@ describe('Connect4 Class', () => {
     expect(board2.isWinningMove(3)).toBeTruthy();
   });
 
-  it('can predict winning moves in both diagonal directions', () => {
+  it('can predict and report winning moves in both diagonal directions', () => {
     const board = new Connect4(width, height);
     board.play(0);
     board.play(6);
@@ -221,6 +283,28 @@ describe('Connect4 Class', () => {
       [0][1][2][3][4][5][6]"
     `);
     expect(board2.isWinningMove(4)).toBeTruthy();
+
+    board2.play(4);
+    expect(board2.gameStatus().solution).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "column": 4,
+          "spacesFromBottom": 2,
+        },
+        Object {
+          "column": 3,
+          "spacesFromBottom": 1,
+        },
+        Object {
+          "column": 2,
+          "spacesFromBottom": 0,
+        },
+        Object {
+          "column": 5,
+          "spacesFromBottom": 3,
+        },
+      ]
+    `);
   });
 
   it('can predict winning moves for corner cases', () => {
@@ -288,6 +372,24 @@ describe('Connect4 Class', () => {
         "currentPlayer": 2,
         "gameOver": true,
         "movesPlayed": 7,
+        "solution": Array [
+          Object {
+            "column": 3,
+            "spacesFromBottom": 0,
+          },
+          Object {
+            "column": 2,
+            "spacesFromBottom": 0,
+          },
+          Object {
+            "column": 1,
+            "spacesFromBottom": 0,
+          },
+          Object {
+            "column": 0,
+            "spacesFromBottom": 0,
+          },
+        ],
         "winner": 1,
       }
     `);
@@ -309,6 +411,7 @@ describe('Connect4 Class', () => {
         "currentPlayer": 1,
         "gameOver": true,
         "movesPlayed": 2,
+        "solution": null,
         "winner": null,
       }
     `);
