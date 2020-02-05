@@ -1,7 +1,6 @@
-const Connect4 = require('./index');
+const { Connect4AI } = require('./index');
 const width = 7;
 const height = 6;
-const { aiPlay } = require('./lib/aiPlay');
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -13,7 +12,7 @@ const rl = readline.createInterface({
 const HUMAN_V_COMPUTER = true;
 const DIFFICULTY = 'easy';
 
-let game = new Connect4(width, height);
+const game = new Connect4AI(width, height);
 console.log(game.ascii());
 console.log('Player', game.getActivePlayer(), '- make a play');
 
@@ -24,13 +23,12 @@ rl.on('line', (line) => {
   const col = Number(screen);
   if(col >= 0 && col < width && game.canPlay(col)) {
     game.play(col);
-    game = showBoardUpdate(game);
+    showUpdateAndNextTurn(game);
     
     if(HUMAN_V_COMPUTER && !game.gameOver) {
-      const play = aiPlay(game, DIFFICULTY);
-      game.play(play);
+      const play = game.playAI(DIFFICULTY);
       console.log('Computer played column:', play);
-      game = showBoardUpdate(game);
+      showUpdateAndNextTurn(game);
     }
   }
   else {
@@ -45,13 +43,12 @@ rl.on('line', (line) => {
 });
 
 
-function showBoardUpdate(game) {
+function showUpdateAndNextTurn(game) {
   console.log(game.ascii());
   if(game.gameOver) {
     console.log('Game Over');
     console.log('Winner:', game.winner, '\n');
-    game = new Connect4(width, height);
+    game.reset();
     console.log(game.ascii());
   }
-  return game;
 }
